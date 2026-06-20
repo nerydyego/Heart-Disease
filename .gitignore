@@ -1,0 +1,98 @@
+# .gitignore - Projeto de Análise de Dados
+# Padrões comuns para Python, Jupyter, dados e ambientes
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ambientes virtuais
+venv/
+.venv/
+env/
+ENV/
+venv*/
+
+# Pip / build
+pip-wheel-metadata/
+build/
+dist/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+.ipython/
+profile_default/
+jupyter_runtime/
+
+# Notebooks (outputs, converted files)
+*.nbconvert.ipynb
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*~
+
+# Environment files / secrets
+.env
+.env.*
+
+# Test caches
+.pytest_cache/
+
+# Database / data files (ignore large datasets; track small sample files separately if needed)
+*.sqlite3
+*.db
+*.db3
+*.h5
+*.hdf5
+*.parquet
+*.feather
+*.csv
+*.tsv
+*.zip
+*.tar.gz
+
+# Results, models, outputs
+/data/
+/data_raw/
+/datasets/
+/raw_data/
+/processed_data/
+/output/
+/outputs/
+/results/
+/models/
+
+# Imagens e hipóteses (solicitado)
+image/
+hipoteses/
+
+# Images common extensions (if you prefer ignoring by extension)
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.gif
+
+# R (se aplicável)
+*.RData
+*.rds
+.Rhistory
+.Rproj.user/
+
+# Mac / Windows files
+Icon\r
