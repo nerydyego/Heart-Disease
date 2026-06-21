@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cardiacos"
+version = "0.1.0"
+description = "Biblioteca de apoio para análise de dados cardíacos"
+readme = "README.md"
+requires-python = ">=3.11"
+
+authors = [
+    {name = "Dyego Nery"}
+]
+
+dependencies = [
+    "pandas",
+    "numpy",
+    "matplotlib",
+    "seaborn",
+    "scikit-learn"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
