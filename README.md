@@ -1,74 +1,68 @@
 # Heart-Disease
 
-Projeto de análise de registros clínicos de pacientes cardíacos com foco em classificação binária (presença/ausência de doença cardíaca).
+Projeto de análise de registros clínicos de pacientes cardíacos com foco em classificação binária (presença/ausência de doença cardíaca). Este repositório contém utilitários para baixar e carregar o dataset, notebooks de análise e material de apoio.
 
-Visão geral
-- Objetivo: explorar, limpar e modelar o dataset "Heart Disease Dataset" (Kaggle) para pesquisa e ensino.
-- Dataset: [heart.csv (Kaggle)](https://www.kaggle.com/datasets/yasserh/heart-disease-dataset?select=heart.csv)
+Links
+
+- Dataset: https://www.kaggle.com/datasets/yasserh/heart-disease-dataset?select=heart.csv
 - Repositório: https://github.com/nerydyego/Heart-Disease
 
-Instalação rápida
+Resumo rápido
+
+- Utilitários: `src/data_loader.py` — funções `baixar_dataset_kaggle()` e `carregar_csv()`.
+- Notebook inicial: `notebook/analise.ipynb` — EDA, limpeza básica e estatísticas descritivas.
+- Estrutura pronta para desenvolvimento com `pyproject.toml` / `requirement.txt`.
+
+Instalação
 
 ```bash
+python -m pip install --upgrade pip
 pip install -e .
+pip install -r requirement.txt
 ```
 
-Pré-requisitos
-- Python 3.8+ e `pip`.
-- Credenciais do Kaggle configuradas localmente (arquivo `kaggle.json` ou variáveis de ambiente).
+Configurar acesso ao Kaggle
+
+1. Crie uma conta no Kaggle e gere `kaggle.json` (API token).
+2. Coloque `kaggle.json` na pasta adequada (ex.: `~/.kaggle/`) ou exponha via variáveis de ambiente.
+3. Não comite esse arquivo no repositório.
 
 Uso (exemplo)
 
 ```python
 from src.data_loader import baixar_dataset_kaggle, carregar_csv
 
-baixar_dataset_kaggle('yasserh/heart-disease-dataset', destino='data', unzip=True)
-df = carregar_csv('data/heart.csv')
+baixar_dataset_kaggle('yasserh/heart-disease-dataset', destino='data/raw', unzip=True)
+df = carregar_csv('data/raw/heart.csv')
 print(df.head())
 ```
 
-Estrutura e observações sobre versionamento
+Resumo das ações no notebook
 
-- `src/` - código fonte e utilitários (ex.: [src/data_loader.py](src/data_loader.py#L1-L200)).
-- `notebook/` - notebooks de análise (ex.: `notebook/analise.ipynb`).
-- `data/` - pasta local para dados baixados (não comitada).
-- `hipoteses/` e `image/` - pastas locais com hipóteses, dicionários e imagens; atualmente **ignoradas** pelo Git via `.gitignore` (ou seja, não são enviadas ao repositório remoto). Se quiser versioná-las, remova as entradas correspondentes em `.gitignore`.
+- Download e extração do dataset em `data/raw`.
+- Carregamento dos dados e inspeção inicial (`head()`, `info()`, `shape`).
+- Renomeação das colunas para rótulos em português.
+- Remoção de duplicados e análise descritiva (contagens, percentuais, estatísticas).
 
-Pontos importantes
-- Não comitar credenciais nem tokens (ex.: `kaggle.json`, `Token_kaggle.txt`). Use variáveis de ambiente ou um gerenciador de segredos.
-- Grandes arquivos de dados devem permanecer fora do repositório; use `data/` local ou armazenamento externo.
+Estrutura do repositório
 
- Resumo das alterações em `notebook/analise.ipynb`
- 
- - Script inicial de importação: uso de `baixar_dataset_kaggle()` para baixar e descompactar o dataset em `data/raw`.
- - Carregamento dos dados com `carregar_csv()` e inspeção inicial (`head()`, `info()`, `shape`).
- - Renomeação das colunas para versões em português (ex.: `Idade`, `Sexo`, `dor_toracica`, `Cardiaco`).
- - Remoção de duplicados com `drop_duplicates()`.
- - Cálculo de contagens e percentuais da variável alvo (`Cardiaco`) e distribuição por sexo.
- - Estatística descritiva de colunas numéricas (idade, PA em repouso, colesterol, FC máxima, ST depressão).
- - Comentários iniciais indicando distribuição aproximadamente equilibrada entre casos positivos e negativos.
- 
- Próximos passos recomendados
- - Finalizar o notebook com EDA, limpeza, engenharia de features e pipeline de treino.
- - Implementar testes unitários (por exemplo, teste para `carregar_csv()` em `tests/test_data_loader.py`).
- - Adicionar integração contínua (GitHub Actions) para rodar testes e lint automaticamente.
- 
- Contato / Contribuição
- - Para contribuições, abra uma issue ou pull request: https://github.com/nerydyego/Heart-Disease
- 
- Licença
- - Adicione um arquivo `LICENSE` ao repositório (ex.: MIT) antes de torná-lo público.
+- `src/` — código fonte.
+- `notebook/` — notebooks de análise.
+- `data/` — dados locais (ignorados por `.gitignore`).
+- `hipoteses/`, `image/` — documentos e imagens locais (atualmente ignorados por `.gitignore`).
 
-Próximos passos sugeridos
-- Finalizar o notebook com EDA, limpeza e modelagem.
-- Adicionar testes unitários para utilitários em `src/`.
-- Configurar CI para testes e lint.
+Notas sobre `.gitignore`
+
+- O arquivo `.gitignore` exclui ambientes virtuais, caches, artefatos de build, dados e pastas locais como `hipoteses/` e `image/`.
+- Se pretende versionar `hipoteses/` ou `image/`, remova essas entradas do `.gitignore` antes de commitar.
+``
+
+Próximos passos recomendados
+
+- Completar o notebook com EDA avançada e modelos de classificação.
+- Adicionar testes unitários para os utilitários (ex.: `tests/test_data_loader.py`).
+- Configurar CI (GitHub Actions) para rodar testes e lint automaticamente.
 
 Contribuição
-- Abra issues ou pull requests no GitHub: https://github.com/nerydyego/Heart-Disease
 
-
-Licença
-
-- Adicione um arquivo `LICENSE` apropriado (ex.: MIT).
-
+Abra uma issue ou pull request: https://github.com/nerydyego/Heart-Disease
